@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    position: relative;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+input {
+    border: 2px solid rgb(118, 181, 197);
+    border-radius: 5px;
+    font-size: medium;
+}
+
+input:hover {
+    border: 2px solid #10558d;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.required {
+    margin-bottom: 4px;
+    color: red;
+    font-size: 12px;
+}
+
+table {
+    padding: 21px;
+    margin: auto;
+    /* position: absolute;
+    top: 70px;
+    left: 470px; */
+    border: 3px solid rgb(118, 181, 197);
+}
+
+button {
+    border-radius: 100px;
+    color: black;
+    font-size: 15px;
+    background-color: rgb(118, 181, 197);
+    border: 2px solid black;
+}
+
+button:hover {
+    background-color: #10558d;
+    color: white;
+}
+
+span.astrisk {
+    color: crimson;
+}
+
+.references {
+    font-size: small;
+}
+
+.references:hover {
+    color: crimson;
+}
+
+.create-acc-btn {
+    margin: 7px 0;
+}
+
+h2 {
+    background-color: rgb(118, 181, 197);
+    color: black;
+    font-size: medium;
+    padding: 13px;
+    margin-top: 0;
+}
+
+.market {
+    font-size: large;
+    font-weight: small;
+    font-family: 'sans-serif';
+    font-style: italic;
+}
+
+.welcome {
+    font-size: large;
+}
+
+#picId {
+    border: 2px solid grey;
+    border-radius: 100%;
+    /*left: 30px;*/
+    width: 200px;
+    height: 200px;
+}

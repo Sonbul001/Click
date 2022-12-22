@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+h2 {
+    background-color: rgb(118, 181, 197);
+    color: black;
+    padding: 0.3em;
+    margin-top: 0;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+span.astrisk {
+    color: crimson;
+}
+
+#picId {
+    border: 2px solid grey;
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-weight: 300;
+    margin-left: 4px;
+}
+
+.required {
+    margin-left: 4px;
+    margin-top: 7px;
+    font-size: 12px;
+    color: crimson;
+}
+
+.addproductform {
+    top: 50px;
+    left: 470px;
+    border: 3px solid rgb(118, 181, 197);
+    padding: 10px;
+    width: 30%;
+    margin-left: 470px;
+}
+
+.addForm{
+    border-radius: 5px;
+    border: 2px solid rgb(118, 181, 197);
+    font-family: 'Poppins', sans-serif;
+}
+
+#addPic {
+    position: absolute;
+    margin-left: 4px;
+    margin-top: 21px;
+}
+
+.addForm:hover {
+    border: 2px solid #10558d;
+}
+
+button {
+    border-radius: 100px;
+    color: black;
+    font-size: 15px;
+    background-color: rgb(118, 181, 197);
+    border: 2px solid black;
+}
+
+button:hover {
+    background-color: #10558d;
+    color: white;
+
+}
+
+.line {
+    border-bottom: 1px solid grey;
+}
