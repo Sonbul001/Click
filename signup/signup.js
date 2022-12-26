@@ -1,8 +1,6 @@
 let togglePassword = document.getElementById("togglePassword");
 let password = document.getElementById("id_password");
 
-togglePassword.addEventListener("click", showpass)
-// toggle the type attribute);
 function showpass() {
    var elem = document.getElementById("id_password");
    var btn = document.getElementById("togglePassword");
