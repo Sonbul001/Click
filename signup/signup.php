@@ -1,23 +1,38 @@
 <?php
 require_once '../db.php';
+session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
+    $image = $_POST['image'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $address = $_POST['address'];
     $location = $_POST['location'];
     $phone = $_POST['phone'];
+    $filename = $_FILES['image']['name'];
+    $tmpname = $_FILES['image']['tmp_name'];
+    if ($filename == "")
+        $folder = "../image/profilepic.jpg";
+    else
+        $folder = "../image/" . $filename;
     $sql = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'");
 
     if (mysqli_num_rows($sql) == 1) {
         echo 'email already exists';
     } else {
-        $sql = "INSERT INTO users(username, email, password,address,location,phone) VALUES ('$username','$email', '$password','$address','$location','$phone')";
+        $sql = "INSERT INTO users(username, image, email, password,address,location,phone) VALUES ('$username', '$folder', '$email', '$password','$address','$location','$phone')";
         $result = mysqli_query($conn, $sql);
         if ($result) {
-            echo '<p class="regsucces">Record added successfully</p>';
+            move_uploaded_file($tmpname, $folder);
+            $_SESSION['username'] = $username;
+            $_SESSION['email'] = $email;
+            $_SESSION['password'] = $password;
+            $_SESSION['address'] = $address;
+            $_SESSION['location'] = $location;
+            $_SESSION['phone'] = $phone;
+            header('Location:../homepage/homepage.html');
         } else {
-            echo '<p class="errorMsg">There was error while adding record</p>';
+            echo '<p class="result">There was error while adding record</p>';
         }
     }
 }
@@ -44,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </a>
     </header>
     <table>
-        <form name="sign up form" class="signup-form" action="signup.php" method="post">
+        <form name="sign up form" class="signup-form" action="signup.php" method="post" enctype="multipart/form-data">
             <tr>
                 <td>
                     <strong><span class="welcome">Welcome to<span class="market"> click</span></span></strong>
@@ -91,8 +106,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </td>
                 <td>
                     <div>
-                        <input type="file" accept="image/*" id="img" alt="can't upload image" style="display: none;"
-                            onchange="previewImage(event)">
+                        <input type="file" accept="image/*" id="img" name="image" alt="can't upload image"
+                            style="display: none;" onchange="previewImage(event)">
                     </div>
                     <label for="img"><img src="profilepic.jpg" alt="choose your profile pic here" id="picId"></label>
                     <br>
