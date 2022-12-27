@@ -101,3 +101,14 @@ header a {
     border-radius: 10%;
     max-width: min-content;
 }
+
+.header-home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.header-home li {
+    list-style: none;
+}
