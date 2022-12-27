@@ -30,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['address'] = $address;
             $_SESSION['location'] = $location;
             $_SESSION['phone'] = $phone;
+            $_SESSION['image'] = $folder;
             header('Location:../homepage/homepage.html');
         } else {
             echo '<p class="result">There was error while adding record</p>';

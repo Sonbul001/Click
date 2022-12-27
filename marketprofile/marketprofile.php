@@ -1,3 +1,38 @@
+<?php
+require_once '../db.php';
+session_start();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $image = $_POST['image'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $address = $_POST['address'];
+    $location = $_POST['location'];
+    $phone = $_POST['phone'];
+    $filename = $_FILES['image']['name'];
+    $tmpname = $_FILES['image']['tmp_name'];
+    if ($filename == "")
+        $folder = $_SESSION['image'];
+    else
+        $folder = "../image/" . $filename;
+    $curr_email = $_SESSION['email'];
+    $sql = "UPDATE markets SET username='$username', image='$folder', email='$email', password='$password', address='$address', location='$location', phone='$phone' WHERE email='$curr_email' ";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        move_uploaded_file($tmpname, $folder);
+        $_SESSION['username'] = $username;
+        $_SESSION['email'] = $email;
+        $_SESSION['password'] = $password;
+        $_SESSION['address'] = $address;
+        $_SESSION['location'] = $location;
+        $_SESSION['phone'] = $phone;
+        $_SESSION['image'] = $folder;
+    } else {
+        echo '<p class="result">There was error while adding record</p>';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,23 +55,28 @@
         </div>
     </header>
 
-    <form action="" id="personal_info">
+    <form action="marketprofile.php" method="post" id="personal_info">
         <div class="header-profile">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/d/dd/Souq-logo-v2-ar.png" alt="market-logo"
-                class="profile-pic">
-            <h1>Souq</h1>
+            <img src='<?php echo $_SESSION['image'] ?>' alt="market-logo" class="profile-pic">
+            <h1><?php echo $_SESSION['username'] ?></h1>
         </div>
-        <div><label for="name">Name: </label><input type="text" name="name" id="name" disabled required></div>
-        <div><label for="img">Image: </label><input type="file" name="img" id="img" accept="image/*" disabled required>
+        <div><label for="name">Name: </label><input type="text" name="username" id="name"
+                value="<?php echo $_SESSION['username'] ?>" disabled required></div>
+        <div><label for="img">Image: </label><input type="file" name="image" id="img" accept="image/*" disabled>
         </div>
-        <div><label for="email">Email: </label><input type="text" name="email" id="email" disabled required></div>
-        <div><label for="pwd">Password: </label><input type="password" name="pwd" id="pwd" disabled required>
+        <div><label for="email">Email: </label><input type="text" name="email" id="email"
+                value="<?php echo $_SESSION['email'] ?>" disabled required></div>
+        <div><label for="pwd">Password: </label><input type="password" name="password" id="pwd"
+                value="<?php echo $_SESSION['password'] ?>" disabled required>
             <i class="far fa-eye" onclick="showpass()" id="show-btn"></i>
         </div>
-        <div><label for="address">Address: </label><input type="text" name="address" id="address" disabled required>
+        <div><label for="address">Address: </label><input type="text" name="address" id="address"
+                value="<?php echo $_SESSION['address'] ?>" disabled required>
         </div>
-        <div><label for="phone">Phone: </label><input type="text" name="phone" id="phone" disabled required></div>
-        <div><label for="location">Location: </label><input type="text" name="location" id="location" disabled></div>
+        <div><label for="phone">Phone: </label><input type="text" name="phone" id="phone"
+                value="<?php echo $_SESSION['phone'] ?>" disabled required></div>
+        <div><label for="location">Location: </label><input type="text" name="location" id="location"
+                value="<?php echo $_SESSION['location'] ?>" disabled></div>
         <div id="edit-btn"><button type="button" onclick="allowEdit()">Edit</button></div>
     </form>
 
@@ -45,7 +85,21 @@
             <h1>Products:</h1>
             <a href="../addproduct/addProduct.html"><button type="button">Add product</button><br></a>
         </div>
-        <div class="item"><img src="https://www.hankerz.com.eg/wp-content/uploads/2021/11/2-2-5-300x300.jpg"
+        <?php
+        $curr_email = $_SESSION['email'];
+        $sql = "SELECT * FROM products WHERE markets='$curr_email'";
+        $result = mysqli_query($conn, $sql);
+        while($row = mysqli_fetch_array($result)){
+            echo "<div class='item'><img src={$row["image"]} alt='item1'>".
+            "<h2 class='product-title'>{$row["name"]}</h2>".
+            "<h3 class='Brand'>{$row["brand"]}</h3>".
+            "<span class='Availability'>{$row["items_available"]} items available</span><br>".
+            "<span class='Price'>{$row["price"]} LE</span>".
+            "</div>";
+        }
+        ?>
+    </div>
+    <!-- <div class="item"><img src="https://www.hankerz.com.eg/wp-content/uploads/2021/11/2-2-5-300x300.jpg"
                 alt="item1">
             <h2 class="product-title">Acer Gaming Headset</h2>
             <h3 class="Brand">Acer</h3>
@@ -103,8 +157,7 @@
             <h3 class="Brand">AMD</h3>
             <span class="Availability">Only 15 available</span><br>
             <span class="Price">3550LE</span>
-        </div>
-    </div>
+        </div> -->
 </body>
 
 </html>

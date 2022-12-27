@@ -1,15 +1,3 @@
-class Data{
-    constructor(name, img, email, pwd, address, phone, location){
-        this.name = name;
-        this.img = img;
-        this.email = email;
-        this.pwd = pwd;
-        this.address = address;
-        this.phone = phone;
-        this.location = location;
-    }
-}
-
 function showpass() {
     var elem = document.getElementById("pwd");
     var btn = document.getElementById("show-btn");
@@ -48,8 +36,8 @@ function allowEdit() {
 
 function cancelEdit() {
     if (document.getElementById("email").disabled == false) {
-        document.getElementById("name").disabled = true;
-        document.getElementById("img").disabled = true;
+        document.getElementById("username").disabled = true;
+        document.getElementById("image").disabled = true;
         document.getElementById("email").disabled = true;
         document.getElementById("pwd").disabled = true;
         document.getElementById("address").disabled = true;
@@ -61,11 +49,10 @@ function cancelEdit() {
 }
 
 function unSave(){
-    document.getElementById("name").value = ""; // fetch data from db (GET METHOD)
-    document.getElementById("img").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("pwd").value = "";
-    document.getElementById("address").value = "";
-    document.getElementById("phone").value = "";
-    document.getElementById("location").value = "";
+    document.getElementById("name").value = document.getElementById("name").defaultValue;
+    document.getElementById("email").value = document.getElementById("email").defaultValue;
+    document.getElementById("pwd").value = document.getElementById("pwd").defaultValue;
+    document.getElementById("address").value = document.getElementById("address").defaultValue;
+    document.getElementById("phone").value = document.getElementById("phone").defaultValue;
+    document.getElementById("location").value = document.getElementById("location").defaultValue;
 }
