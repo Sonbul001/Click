@@ -24,8 +24,8 @@ a {
     grid-template-columns: repeat(4,auto);
     gap: 2em 2em;
     padding: 2em;
-    background-color: white;
-    border: 1px solid rgb(118,181,197);
+    background-color: f5f6fa;
+    /* border: 1px solid rgb(118,181,197); */
     margin-top: 1em;
 }
 

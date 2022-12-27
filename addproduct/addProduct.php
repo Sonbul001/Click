@@ -20,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($conn, $sql);
     if ($result) {
         move_uploaded_file($tmpname, $folder);
+        header('Location:../marketprofile/marketprofile.php');
     } else {
         echo '<p class="result">There was error while adding record</p>';
     }

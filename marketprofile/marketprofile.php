@@ -51,7 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <header>
 
         <div class="header-home">
-            <a href="../homepage/homepage.html" class="logo">Click</a>
+            <a href="#" class="logo">Click</a>
+            <li><a href="../homepage/defaulthome.php"><button class="btn btn-dark-outline"><strong>Log
+                            Out</strong></button></a>
         </div>
     </header>
 
@@ -83,11 +85,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="product-list">
         <div class="product-list-head">
             <h1>Products:</h1>
-            <a href="../addproduct/addProduct.html"><button type="button">Add product</button><br></a>
+            <a href="../addproduct/addProduct.php"><button type="button">Add product</button><br></a>
         </div>
         <?php
         $curr_email = $_SESSION['email'];
-        $sql = "SELECT * FROM products WHERE markets='$curr_email'";
+        $sql = "SELECT * FROM products WHERE market='$curr_email'";
         $result = mysqli_query($conn, $sql);
         while($row = mysqli_fetch_array($result)){
             echo "<div class='item'><img src={$row["image"]} alt='item1'>".
@@ -99,65 +101,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
     </div>
-    <!-- <div class="item"><img src="https://www.hankerz.com.eg/wp-content/uploads/2021/11/2-2-5-300x300.jpg"
-                alt="item1">
-            <h2 class="product-title">Acer Gaming Headset</h2>
-            <h3 class="Brand">Acer</h3>
-            <span class="Availability">Only 4 available</span><br>
-            <span class="Price">449LE</span>
-        </div>
-        <div class="item"><img src="https://www.hankerz.com.eg/wp-content/uploads/2022/11/1-Havit-KB489L-600x600.jpg"
-                alt="item1">
-            <h2 class="product-title">Havit KB489L TKL Mechanical Keyboard</h2>
-            <h3 class="Brand">Havit</h3>
-            <span class="Availability">Only 31 available</span><br>
-            <span class="Price">600LE</span>
-        </div>
-        <div class="item"><img
-                src="https://www.hankerz.com.eg/wp-content/uploads/2021/11/2018041810095138_big-300x300.jpg"
-                alt="item1">
-            <h2 class="product-title">Gigabyte AMP900 Extended</h2>
-            <h3 class="Brand">Gigabyte</h3>
-            <span class="Availability">Only 50 available</span><br>
-            <span class="Price">550LE</span>
-        </div>
-        <div class="item"><img src="https://www.hankerz.com.eg/wp-content/uploads/2021/11/2-62-600x600.jpg" alt="item1">
-            <h2 class="product-title">Acer Mouse Gaming Nitro NMW810 4000 DPI</h2>
-            <h3 class="Brand">Acer</h3>
-            <span class="Availability">Only 22 available</span><br>
-            <span class="Price">300LE</span>
-        </div>
-        <div class="item"><img src="https://www.hankerz.com.eg/wp-content/uploads/2021/11/1-17-4-600x600.jpg"
-                alt="item1">
-            <h2 class="product-title">Razer Huntsman Mini Mercury Edition Purple Switch-white</h2>
-            <h3 class="Brand">Razer</h3>
-            <span class="Availability">Only 2 available</span><br>
-            <span class="Price">1800LE</span>
-        </div>
-        <div class="item"><img
-                src="https://www.hankerz.com.eg/wp-content/uploads/2021/11/logitech-gaming-mouse-g300s-EWR2-1-600x600.jpg"
-                alt="item1">
-            <h2 class="product-title">Logitech G300S Gaming Mouse EWR2</h2>
-            <h3 class="Brand">Logitech</h3>
-            <span class="Availability">Only 44 available</span><br>
-            <span class="Price">350LE</span>
-        </div>
-        <div class="item"><img
-                src="https://www.hankerz.com.eg/wp-content/uploads/2022/12/1-VGA-Asus-Dual-RTX-3050-OC-8GB-DDR6-600x600.gif"
-                alt="item1">
-            <h2 class="product-title">Asus Dual RTX 3050 OC 8GB DDR6</h2>
-            <h3 class="Brand">Asus</h3>
-            <span class="Availability">Only 50 available</span><br>
-            <span class="Price">9999LE</span>
-        </div>
-        <div class="item"><img
-                src="https://www.hankerz.com.eg/wp-content/uploads/2022/11/AMD-Ryzen-5-3500-Tray-6-core-600x600.gif"
-                alt="item1">
-            <h2 class="product-title">AMD Ryzen 5 3500 Tray 6 core 6 Threads Up to 4.1GHz +Fan Orginal</h2>
-            <h3 class="Brand">AMD</h3>
-            <span class="Availability">Only 15 available</span><br>
-            <span class="Price">3550LE</span>
-        </div> -->
 </body>
 
 </html>
