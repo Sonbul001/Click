@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </header>
 
-    <form action="marketprofile.php" method="post" id="personal_info">
+    <form action="marketprofile.php" method="post" id="personal_info" enctype="multipart/form-data">
         <div class="header-profile">
             <img src='<?php echo $_SESSION['image'] ?>' alt="market-logo" class="profile-pic">
             <h1><?php echo $_SESSION['username'] ?></h1>

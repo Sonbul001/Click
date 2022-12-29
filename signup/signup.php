@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['location'] = $location;
             $_SESSION['phone'] = $phone;
             $_SESSION['image'] = $folder;
-            header('Location:../homepage/marketprofile.php');
+            header('Location:../homepage/homepage.php');
         } else {
             echo '<p class="result">There was error while adding record</p>';
         }

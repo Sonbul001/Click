@@ -27,7 +27,7 @@ if(isset($_GET['status'])){
 
 <body>
     <div class="sidebar">
-        <a href="../profile/profile.html">
+        <a href="../profile/profile.php">
             <div class="profile">
                 <img src="<?php echo $image ?>" alt="profile_picture">
                 <h3><?php echo $name ?></h3>
@@ -79,6 +79,8 @@ if(isset($_GET['status'])){
         while ($row = mysqli_fetch_array($result)) {
             echo "<div class='item'><img src={$row["image"]} alt='item1'>" .
                 "<h2 class='product-title'>{$row["username"]}</h2>" .
+                "<a href='../profile/markets.php?image={$row["image"]}&name={$row["username"]}'><button type='button'>Like</button>" .
+                "</a>" .
                 "</div>";
         }
         ?>

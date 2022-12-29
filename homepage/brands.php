@@ -27,7 +27,7 @@ if(isset($_GET['status'])){
 
 <body>
     <div class="sidebar">
-        <a href="../profile/profile.html">
+        <a href="../profile/profile.php">
             <div class="profile">
                 <img src="<?php echo $image ?>" alt="profile_picture">
                 <h3><?php echo $name ?></h3>

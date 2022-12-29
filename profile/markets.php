@@ -1,6 +1,16 @@
 <?php
 require_once("../db.php");
 session_start();
+$curr_email = $_SESSION['email'];
+if(isset($_GET['name'])){
+    $username = $_GET['name'];
+    $sql = "SELECT email FROM markets WHERE username='$username'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result);
+    $marketemail = $row['email'];
+    $sql = "INSERT INTO usermarket(market,user) VALUES ('$marketemail','$curr_email')";
+    $result = mysqli_query($conn, $sql);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +44,7 @@ session_start();
         </div>
         <?php
             $curr_email = $_SESSION['email'];
-            $sql = "SELECT * FROM markets inner join usermarket on markets.username=usermarket.market where usermarket.user='$curr_email'";
+            $sql = "SELECT * FROM markets inner join usermarket on markets.email=usermarket.market where usermarket.user='$curr_email'";
             $result = mysqli_query($conn, $sql);
             while ($row = mysqli_fetch_array($result)) {
                 echo "<div class='item'><img src={$row["image"]} alt='item1'>" .
@@ -42,38 +52,6 @@ session_start();
                     "</div>";
             }
         ?>
-        <!-- <div class="item"><img src="https://img.freepik.com/free-icon/intel_318-674238.jpg?w=2000"
-                alt="item1">
-            <h2 class="product-title">Intel</h2>
-        </div>
-        <div class="item"><img src="https://www.amd.com/system/files/2020-06/amd-default-social-image-1200x628.jpg"
-                alt="item1">
-            <h2 class="product-title">AMD</h2>
-        </div>
-        <div class="item"><img src="https://dlcdnimgs.asus.com/websites/global/Sno/79183.jpg"
-                alt="item1">
-            <h2 class="product-title">Asus</h2>
-        </div>
-        <div class="item"><img src="https://logoeps.com/wp-content/uploads/2011/08/acer-logo-vector-01.png"
-                alt="item1">
-            <h2 class="product-title">Acer</h2>
-        </div>
-        <div class="item"><img src="https://i.pinimg.com/originals/4b/60/68/4b6068930b33de4d477f77718ec21c4d.jpg"
-                alt="item1">
-            <h2 class="product-title">Toshiba</h2>
-        </div>
-        <div class="item"><img src="https://1000logos.net/wp-content/uploads/2016/10/Apple-Logo.png"
-                alt="item1">
-            <h2 class="product-title">Apple</h2>
-        </div>
-        <div class="item"><img src="https://companieslogo.com/img/orig/MSFT-a203b22d.png?t=1633073277"
-                alt="item1">
-            <h2 class="product-title">Microsoft</h2>
-        </div>
-        <div class="item"><img src="https://1000logos.net/wp-content/uploads/2021/05/Souq.com-logo.png"
-                alt="item1">
-            <h2 class="product-title">Souq</h2>
-        </div> -->
     </div>
     
 </body>

@@ -17,7 +17,7 @@ session_start();
 
 <body>
     <div class="sidebar">
-        <a href="../profile/profile.php">
+        <a href="#">
             <div class="profile">
                 <img src="../image/profilepic.jpg" alt="profile_picture">
                 <h3></h3>
