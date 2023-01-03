@@ -74,7 +74,7 @@ if(isset($_GET['status'])){
         <div class="product-list">
         <?php
         $curr_email = $_SESSION['email'];
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT DISTINCT brand FROM products";
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_array($result)) {
             echo "<div class='item'>" .

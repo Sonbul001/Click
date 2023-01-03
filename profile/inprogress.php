@@ -37,12 +37,15 @@ session_start();
         $sql = "SELECT * FROM products inner join userproduct on products.name=userproduct.product where userproduct.user='$curr_email' and userproduct.type='inprocess'";
         $result = mysqli_query($conn, $sql);
         while($row = mysqli_fetch_array($result)){
-            echo "<div class='item'><img src={$row["image"]} alt='item1'>".
-            "<h2 class='product-title'>{$row["name"]}</h2>".
-            "<h3 class='Brand'>{$row["brand"]}</h3>".
-            "<span class='Availability'>{$row["items_available"]} items available</span><br>".
-            "<span class='Price'>{$row["price"]} LE</span>".
-            "</div>";
+            echo "<a href='../homepage/product.php?image={$row["image"]}&name={$row["name"]}&brand={$row["brand"]}&items={$row["items_available"]}&price={$row["price"]}'>" .
+                "<div class='item'>" .
+                "<img src={$row["image"]} alt='item1'>" .
+                "<h2 class='product-title'>{$row["name"]}</h2>" .
+                "<h3 class='Brand'>{$row["brand"]}</h3>" .
+                "<span class='Availability'>{$row["items_available"]} items available</span><br>" .
+                "<span class='Price'>{$row["price"]} LE</span>" .
+                "</div>" .
+                "</a>";
         }
         ?>
     </div>

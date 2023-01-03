@@ -32,35 +32,55 @@ session_start();
                     class="header-profile-pic"></a>
         </div>
     </header>
-    <div class="container">
-        <div class="products" id="prdct">
-        <?php
-        $curr_email = $_SESSION['email'];
-        $sql = "SELECT * FROM products inner join userproduct on products.name=userproduct.product where userproduct.user='$curr_email' and userproduct.type='cart'";
-        $result = mysqli_query($conn, $sql);
-        while ($row = mysqli_fetch_array($result)) {
-            echo "<div class='item'><img src={$row["image"]} alt='item1'>" .
-                "<div class='item-text'>" .
-                "<h2 class='product-title'>{$row["name"]}</h2>" .
-                "<span class='Price'>{$row["price"]} LE</span>" .
-                "</div>" .
-                "</div>";
-        }
-        if (array_key_exists('buy', $_POST)) {
-            $curr_email = $_SESSION['email'];
-            $sql = "UPDATE userproduct SET type='inprocess' WHERE user='$curr_email' and type='cart'";
-            $result = mysqli_query($conn, $sql);
-            header('Location:inprogress.php');
-        }
-        ?>
-        </div>
-        <div class="order">
-            <div>
-                <h3>Order Total:</h3>
-                <h4 id="total"></h4>
-                <form method="post"><button type="submit" class="buy" name="buy">Buy Now</button></form>
+    <form method="post" action="cart.php">
+        <div class="container">
+            <div class="products" id="prdct">
+                <?php
+                $curr_email = $_SESSION['email'];
+                $sql = "SELECT * FROM products inner join userproduct on products.name=userproduct.product where userproduct.user='$curr_email' and userproduct.type='cart'";
+                $result = mysqli_query($conn, $sql);
+                $market_email = array();
+                $product_prices = array();
+                $i = 0;
+                while ($row = mysqli_fetch_array($result)) {
+                    array_push($market_email, $row["market"]);
+                    array_push($product_prices, $row["price"]);
+                    echo "<div class='items'><img src={$row["image"]} alt='item1'>" .
+                        "<div class='item-text'>" .
+                        "<h2 class='product-title'>{$row["name"]}</h2>" .
+                        "<h3 class='Brand'>{$row["brand"]}</h3>" .
+                        "<span class='Availability'>{$row["items_available"]} items available</span><br>" .
+                        "<span class='Price'>{$row["price"]} LE</span>" .
+                        "<span>Quantity:<input type='number' name='market$i' value='1' class='quantity' min='0'></span><br>" .
+                        "</div>" .
+                        "</div>";
+                    $i++;
+                }
+                if (array_key_exists('buy', $_POST)) {
+                    $index = 0;
+                    $curr_email = $_SESSION['email'];
+                    $tot = $_POST['total'];
+                    $sql = "UPDATE userproduct SET type='purchased' WHERE user='$curr_email' and type='cart'";
+                    $result = mysqli_query($conn, $sql);
+                    
+                    foreach ($market_email as $em) {
+                        $additive = $_POST["market{$index}"] * $product_prices[$index];
+                        $sql = "UPDATE markets SET balance= balance + $additive WHERE email='$em'";
+                        $result = mysqli_query($conn, $sql);
+                        $index++;
+                    }
+                    header('Location:purchased.php');
+                }
+                ?>
+                <div style="padding: 20px;">
+                    <h3>Order Total:</h3>
+                    <h4 class="total"></h4>
+                    <input name="total" class="total" hidden><button type="submit" class="buy" name="buy">Buy
+                        Now</button>
+                </div>
             </div>
         </div>
+    </form>
 </body>
 
 </html>
