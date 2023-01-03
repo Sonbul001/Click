@@ -13,13 +13,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<p>Wrong credentials please try again</p>";
         else {
             while ($row = mysqli_fetch_array($result)) {
-                $_SESSION['username'] = $row["username"];$_SESSION['username'];
+                $_SESSION['username'] = $row["username"];
                 $_SESSION['email'] = $row["email"];
                 $_SESSION['password'] = $row["password"];
                 $_SESSION['address'] = $row["address"];
                 $_SESSION['location'] = $row["location"];
                 $_SESSION['phone'] = $row["phone"];
                 $_SESSION['image'] = $row["image"];
+                $_SESSION['balance'] = $row["balance"];
                 header('Location:../marketprofile/marketprofile.php');
             }
         }

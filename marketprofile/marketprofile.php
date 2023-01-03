@@ -60,9 +60,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form action="marketprofile.php" method="post" id="personal_info" enctype="multipart/form-data">
         <div class="header-profile">
             <img src='<?php echo $_SESSION['image'] ?>' alt="market-logo" class="profile-pic">
-            <h1><?php echo $_SESSION['username'] ?></h1>
+            <h1>
+                <?php echo $_SESSION['username'] ?>
+            </h1>
         </div>
-        <div><label for="name">Name: </label><input type="text" name="username" id="name"
+        <div><label for="name">Name: </label><input type="text" name="username" id="username"
                 value="<?php echo $_SESSION['username'] ?>" disabled required></div>
         <div><label for="img">Image: </label><input type="file" name="image" id="img" accept="image/*" disabled>
         </div>
@@ -79,6 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 value="<?php echo $_SESSION['phone'] ?>" disabled required></div>
         <div><label for="location">Location: </label><input type="text" name="location" id="location"
                 value="<?php echo $_SESSION['location'] ?>" disabled></div>
+        <div><label for="balance">Balance: </label><input type="number" name="balance" id="balance"
+                value="<?php echo $_SESSION['balance'] ?>" disabled></div>
         <div id="edit-btn"><button type="button" onclick="allowEdit()">Edit</button></div>
     </form>
 
@@ -91,13 +95,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $curr_email = $_SESSION['email'];
         $sql = "SELECT * FROM products WHERE market='$curr_email'";
         $result = mysqli_query($conn, $sql);
-        while($row = mysqli_fetch_array($result)){
-            echo "<div class='item'><img src={$row["image"]} alt='item1'>".
-            "<h2 class='product-title'>{$row["name"]}</h2>".
-            "<h3 class='Brand'>{$row["brand"]}</h3>".
-            "<span class='Availability'>{$row["items_available"]} items available</span><br>".
-            "<span class='Price'>{$row["price"]} LE</span>".
-            "</div>";
+        while ($row = mysqli_fetch_array($result)) {
+            echo "<div class='item'><img src={$row["image"]} alt='item1'>" .
+                "<h2 class='product-title'>{$row["name"]}</h2>" .
+                "<h3 class='Brand'>{$row["brand"]}</h3>" .
+                "<span class='Availability'>{$row["items_available"]} items available</span><br>" .
+                "<span class='Price'>{$row["price"]} LE</span>" .
+                "</div>";
         }
         ?>
     </div>

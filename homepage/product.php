@@ -63,14 +63,16 @@ $price = $_GET["price"];
         $result = mysqli_query($conn, $sql);
         header('Location:../profile/favorite.php');
     }
+    if(!isset($_GET['status'])){
+            echo "<form method='post'><button type='submit' name='buy'>Buy now</button></form>" .
+                "<br>" .
+                "<br>" .
+                "<form action='' method='post'><button type='submit' name='cart'>Add to cart</button></form>" .
+                "<br>" .
+                "<br>" .
+                "<form action='' method='post'><button type='submit' name='fav'>Add to favorites</button></form>";
+    }
     ?>
-        <form method="post"><button type="submit" name="buy">Buy now</button></form>
-        <br>
-        <br>
-        <form action="" method="post"><button type="submit" name="cart">Add to cart</button></form>
-        <br>
-        <br>
-        <form action="" method="post"><button type="submit" name="fav">Add to favorites</button></form>
     </div>
 </body>
 

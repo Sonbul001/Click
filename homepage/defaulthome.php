@@ -63,7 +63,7 @@ session_start();
         $sql = "SELECT * FROM products";
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_array($result)) {
-            echo "<a href='product.php?image={$row["image"]}&name={$row["name"]}&brand={$row["brand"]}&items={$row["items_available"]}&price={$row["price"]}'>" .
+            echo "<a href='product.php?image={$row["image"]}&name={$row["name"]}&brand={$row["brand"]}&items={$row["items_available"]}&price={$row["price"]}&status=true'>" .
                 "<div class='item'>" .
                 "<img src={$row["image"]} alt='item1'>" .
                 "<h2 class='product-title'>{$row["name"]}</h2>" .

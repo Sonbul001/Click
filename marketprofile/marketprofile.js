@@ -11,7 +11,7 @@ function showpass() {
 
 function allowEdit() {
     if (document.getElementById("email").disabled == true) {
-        document.getElementById("name").disabled = false;
+        document.getElementById("username").disabled = false;
         document.getElementById("img").disabled = false;
         document.getElementById("email").disabled = false;
         document.getElementById("pwd").disabled = false;
@@ -37,7 +37,7 @@ function allowEdit() {
 function cancelEdit() {
     if (document.getElementById("email").disabled == false) {
         document.getElementById("username").disabled = true;
-        document.getElementById("image").disabled = true;
+        document.getElementById("img").disabled = true;
         document.getElementById("email").disabled = true;
         document.getElementById("pwd").disabled = true;
         document.getElementById("address").disabled = true;
@@ -49,7 +49,7 @@ function cancelEdit() {
 }
 
 function unSave(){
-    document.getElementById("name").value = document.getElementById("name").defaultValue;
+    document.getElementById("username").value = document.getElementById("username").defaultValue;
     document.getElementById("email").value = document.getElementById("email").defaultValue;
     document.getElementById("pwd").value = document.getElementById("pwd").defaultValue;
     document.getElementById("address").value = document.getElementById("address").defaultValue;

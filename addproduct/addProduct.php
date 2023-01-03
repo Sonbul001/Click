@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <header>
-       <a href="../homepage/homepage.html"><h2 class="logo">Click</h2> </a>
+       <a href="../marketprofile/marketprofile.php"><h2 class="logo">Click</h2> </a>
     </header>
     <form method="post" action="addProduct.php" class="addproductform" id="formid" enctype="multipart/form-data">
         <h3>Add your product</h3>
@@ -52,13 +52,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br>
         <div><input class =addForm type="text" id="brand" name="brand" placeholder="Brand" required><span class="astrisk">*</span></div>
         <br>
-        <div> <input class="addForm" type="text" id="price" name="price" placeholder="Price" required><span class="astrisk">*</span></div>
+        <div> <input class="addForm" type="number" id="price" name="price" placeholder="Price" required><span class="astrisk">*</span></div>
         <br>
-        <div><textarea class="addForm" name="brief" id="brief" form="formid" rows="3" placeholder="Brief description" ></textarea></div>
+        <div><textarea class="addForm" name="brief" id="brief" form="formid" rows="3" placeholder="Brief description" required></textarea><span class="astrisk">*</span></div>
         <br>
-        <div><textarea class="addForm" name="full" id="full" form="formid" rows="5" placeholder="Full description" ></textarea></div>
+        <div><textarea class="addForm" name="full" id="full" form="formid" rows="5" placeholder="Full description" required></textarea><span class="astrisk">*</span></div>
         <br>
-        <div> <input class="addForm" type="text" name="items" id="items" placeholder="No. of items" required><span class="astrisk">*</span></div>
+        <div> <input class="addForm" type="number" name="items" id="items" placeholder="No. of items" required min="1"><span class="astrisk">*</span></div>
         <br>
         <div> <button type="submit">add product</button> </div>
         <br>
