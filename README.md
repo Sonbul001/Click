@@ -1,2 +1,2 @@
 # Click
-A web engineering practice project using HTML5, CSS3, JS, PHP and MYSQL
+A tech ecommerce website developed using HTML, CSS and PHP
